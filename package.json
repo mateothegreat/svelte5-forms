@@ -1,12 +1,6 @@
 {
   "name": "@mateothegreat/svelte5-forms",
-<<<<<<< HEAD
   "version": "0.0.14",
-||||||| c15e8af
-  "version": "0.0.12",
-=======
-  "version": "0.0.13",
->>>>>>> eccc96509454fab48423257b6adcd020d9ab050e
   "type": "module",
   "svelte": "./index.js",
   "main": "./index.js",
