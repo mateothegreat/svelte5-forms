@@ -25,12 +25,12 @@
         }
       }
     }
+    form.controls[name].valid = Object.values(form.controls[name].errors).every((error) => error.length === 0);
   };
 
   onMount(() => validate());
 </script>
 
-{form.controls[name].value}
 <input
   bind:value={form.controls[name].value}
   onchange={(e) => {

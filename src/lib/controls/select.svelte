@@ -4,7 +4,7 @@
   import CaretDoubleUp from "phosphor-svelte/lib/CaretDoubleUp";
   import CaretUpDown from "phosphor-svelte/lib/CaretUpDown";
   import Check from "phosphor-svelte/lib/Check";
-  import { type Snippet } from "svelte";
+  import { onMount, type Snippet } from "svelte";
   import { Validation, type Instance } from "..";
 
   type Props<T> = any & {
@@ -29,17 +29,22 @@
         }
       }
     }
+    form.controls[name].valid = Object.values(form.controls[name].errors).every((error) => {
+      return typeof error === "string" && error.length === 0;
+    });
   };
 
   // onMount(() => validate());
   if (!form.controls[name]) {
     throw new Error(`Control ${name} not found`);
   }
+
+  onMount(() => validate());
 </script>
 
 <Select.Root onValueChange={validate} bind:value={form.controls[name].value} {...rest} class={className}>
   <Select.Trigger
-    class="border-border-input bg-background inline-flex h-10 select-none items-center rounded-lg border-2 border-slate-800 px-[11px] text-sm transition-colors dark:text-slate-500">
+    class="border-border-input bg-background inline-flex h-10 select-none items-center rounded-lg border-2 border-slate-800 px-[11px] text-sm transition-colors">
     {#if prefix}
       <div class="mr-1">
         {@render prefix()}
@@ -48,7 +53,7 @@
     {#if Array.isArray(form.controls[name].value) && form.controls[name].value.length > 0}
       {form.controls[name].value.join(", ")}
     {:else}
-      {placeholder}
+      <div class="text-muted-foreground">{placeholder}</div>
     {/if}
     <CaretUpDown class="ml-auto size-5 dark:text-slate-500" />
   </Select.Trigger>

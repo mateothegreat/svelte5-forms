@@ -13,6 +13,7 @@ export class Control<V> {
   max?: number;
   validators?: Validator<V>[];
   errors?: Record<string, string[]> = $state({});
+  valid?: boolean = $state(true);
 }
 
 /**

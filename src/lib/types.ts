@@ -15,6 +15,11 @@ export class FormInstance<T = any> {
     }
     return result;
   }
+
+  get valid(): boolean {
+    const keys = Object.keys(this.controls);
+    return keys.every((key) => this.controls[key].valid);
+  }
 }
 
 export const createForm = <T>(controls: Control<T>[]): FormInstance<T> => {

@@ -19,6 +19,7 @@
   ];
 
   let form: Instance;
+  let valid: boolean;
 
   const controls = $state([
     {
@@ -86,5 +87,7 @@
   </div>
   <div class="w-96 rounded-lg bg-black p-4 shadow-xl">
     <pre class="text-xs text-slate-500">{JSON.stringify(form.values, null, 2)}</pre>
+    <pre class="text-xs text-slate-500">{JSON.stringify(form.errors, null, 2)}</pre>
+    <pre class="text-xs text-slate-500">valid: {form.valid}</pre>
   </div>
 </div>
