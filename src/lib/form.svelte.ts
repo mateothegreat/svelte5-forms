@@ -1,27 +1,28 @@
-import { Instance } from './types';
+import { FormInstance } from './types';
 import type { Validator } from './validators/validator';
 
 /**
  * A control object.
  */
-export class Control<T> {
+export class Control<V> {
   name: string;
-  value?: T = $state();
-  data?: T[];
-  displayFn?: (item: T) => string;
+  value?: V = $state();
+  data?: any[];
+  displayFn?: (item: any) => string;
   disabled?: boolean;
   max?: number;
-  validators?: Validator<T>[];
+  validators?: Validator<V>[];
   errors?: Record<string, string[]> = $state({});
 }
+
 /**
  * Create a form with an array of controls.
  * @param name - The name of the form.
  * @param controls - An array of controls to be added to the form.
  * @returns Returns a {Form} object.
  */
-export const createForm = <T>(controls: Control<any>[]): Instance<T> => {
-  const form = new Instance<T>();
+export const createForm = <T>(controls: Control<T>[]): FormInstance<T> => {
+  const form = new FormInstance<T>();
   for (const control of controls) {
     form.controls[control.name] = createControl(control);
   }

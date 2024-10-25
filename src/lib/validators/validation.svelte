@@ -12,8 +12,10 @@
   {/each}
 {/snippet}
 
-<div>
-  {#each Object.entries(results) as [key, result]}
-    {@render error(result)}
-  {/each}
-</div>
+{#if results}
+  <div>
+    {#each Object.entries(results) as [key, result]}
+      {@render error(result)}
+    {/each}
+  </div>
+{/if}

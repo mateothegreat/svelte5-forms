@@ -2,10 +2,10 @@
   import { onMount, type Snippet } from "svelte";
   import { twMerge } from "tailwind-merge";
   import { Control, createForm } from "./form.svelte";
-  import type { Instance } from "./types";
+  import type { FormInstance } from "./types";
 
   type Props<T> = {
-    form: Instance<T>;
+    form: FormInstance<T>;
     controls: Control<T>[];
     class?: string;
     children: Snippet;
@@ -13,7 +13,7 @@
 
   let { form = $bindable(), controls, children, class: className }: Props<T> = $props();
 
-  form = createForm(controls);
+  form = createForm<T>(controls);
 
   onMount(() => {
     console.log(form);

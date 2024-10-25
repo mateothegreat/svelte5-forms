@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Form from "@mateothegreat/svelte5-forms";
-  import { minLength } from "@mateothegreat/svelte5-forms";
+  import { Instance, minLength } from "@mateothegreat/svelte5-forms";
   import { Palette } from "phosphor-svelte";
 
   type MyDataType1 = {
@@ -18,7 +18,7 @@
     { value: "apple", label: "Apple" }
   ];
 
-  let form: Form.Instance<MyDataType1>;
+  let form: Instance;
 
   const controls = $state([
     {
