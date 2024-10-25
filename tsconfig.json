@@ -14,15 +14,12 @@
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "allowArbitraryExtensions": true,
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.svelte"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+    "src/**/*.svelte",
+    "src/**/*.svelte.ts"
   ]
 }

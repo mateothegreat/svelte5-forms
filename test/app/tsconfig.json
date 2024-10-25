@@ -17,10 +17,10 @@
     "noEmit": true,
     "moduleResolution": "bundler",
     "paths": {
-      "@mateothegreat/new": [
+      "@mateothegreat/svelte5-forms": [
         "../../src/lib"
       ],
-      "@mateothegreat/new/*": [
+      "@mateothegreat/svelte5-forms/*": [
         "../../src/lib/*"
       ]
     },
