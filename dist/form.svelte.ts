@@ -37,7 +37,7 @@ export const createForm = <T>(name: string, controls: Control<any>[]): Form<T> =
 /**
  * A control object.
  */
-class Control<T> {
+export class Control<T> {
   name: string;
   value? = $state<T>();
   data?: T[];
