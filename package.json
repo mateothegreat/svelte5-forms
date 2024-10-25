@@ -2,19 +2,20 @@
   "name": "@mateothegreat/svelte5-forms",
   "version": "0.0.14",
   "type": "module",
-  "svelte": "./index.js",
-  "main": "./index.js",
-  "module": "./index.js",
-  "types": "./index.d.ts",
+  "svelte": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js"
+      "import": "./dist/index.js"
     },
     "./styles/app.pcss": "./public/styles/app.pcss"
   },
   "scripts": {
-    "check": "exit 0; svelte-check --tsconfig ./tsconfig.json",
-    "release": "svelte-package && npm version patch && cp package.json package.json && cd dist && npm version patch && npm publish"
+    "check": "exit 0;svelte-check --tsconfig ./tsconfig.json",
+    "build": "npm run check && rimraf dist && cpx 'src/lib/**/*' dist && cpx package.json dist",
+    "release": "svelte-package && cp package.json dist/package.json && cd dist && npm publish"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.3.6",
