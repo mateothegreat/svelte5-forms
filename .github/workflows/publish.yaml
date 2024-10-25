@@ -23,9 +23,7 @@ jobs:
       - name: install
         run: npm install --legacy-peer-deps
       - name: build
-        run: npm run build
-      - name: publish
-        run: cd dist && npm publish --access=public
+        run: npm run release
       - name: discord notification
         uses: sarisia/actions-status-discord@v1
         if: always()
