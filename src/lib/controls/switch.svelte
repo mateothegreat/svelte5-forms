@@ -2,11 +2,11 @@
   import { Label, Switch } from "bits-ui";
   import { onMount, type Snippet } from "svelte";
   import { twMerge } from "tailwind-merge";
-  import type { Instance } from "..";
+  import type { FormInstance } from "../types";
   import Validation from "../validators/validation.svelte";
 
   type Props = {
-    form: Instance<any>;
+    form: FormInstance<any>;
     name: string;
     placeholder?: string;
     value?: any;

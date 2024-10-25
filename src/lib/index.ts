@@ -6,6 +6,6 @@ export { default as Root } from "./root.svelte";
 export * as Controls from "./controls";
 export * as Header from "./header";
 
-export { FormInstance as Instance, createForm } from "./types";
+export { FormInstance, createForm } from "./types";
 export * from "./validators";
 

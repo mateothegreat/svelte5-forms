@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { twMerge } from "tailwind-merge";
-  import { Instance } from "..";
+  import type { FormInstance } from "../types";
   import Validation from "../validators/validation.svelte";
 
   type Props = {
-    form: Instance<any>;
+    form: FormInstance<any>;
     name: string;
     placeholder?: string;
     value?: any;
