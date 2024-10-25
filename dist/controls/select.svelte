@@ -20,12 +20,15 @@
   let { form, children, name, data, placeholder, class: className, prefix, ...rest }: Props<T> = $props();
 
   const validate = () => {
-    form.controls[name].errors = {};
+    form.controls[name].errors.set({});
     if (form.controls[name].validators) {
       for (const validator of form.controls[name].validators) {
         const result = validator.fn(form.controls[name].value);
         if (result && result.length > 0) {
-          form.controls[name].errors[validator.name] = result;
+          form.controls[name].errors.update((errors) => {
+            errors[validator.name] = result;
+            return errors;
+          });
         }
       }
     }

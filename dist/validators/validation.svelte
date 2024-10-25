@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { Writable } from "svelte/store";
   type Props = {
-    results: Record<string, string[]>;
+    results: Writable<Record<string, string[]>>;
   };
 
   let { results }: Props = $props();
