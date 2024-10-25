@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { twMerge } from "tailwind-merge";
-  import { Form } from "..";
+  import { Instance } from "..";
   import Validation from "../validators/validation.svelte";
 
   type Props = {
-    form: Form<any>;
+    form: Instance<any>;
     name: string;
     placeholder?: string;
     value?: any;
@@ -16,15 +16,12 @@
   let { form, name, placeholder, value, class: className, type = "text", ...rest }: Props = $props();
 
   const validate = () => {
-    form.controls[name].errors.set({});
+    form.controls[name].errors = {};
     if (form.controls[name].validators) {
       for (const validator of form.controls[name].validators) {
         const result = validator.fn(form.controls[name].value);
         if (result && result.length > 0) {
-          form.controls[name].errors.update((errors) => {
-            errors[validator.name] = result;
-            return errors;
-          });
+          form.controls[name].errors[validator.name] = result;
         }
       }
     }
@@ -33,10 +30,11 @@
   onMount(() => validate());
 </script>
 
+{form.controls[name].value}
 <input
   bind:value={form.controls[name].value}
   onchange={(e) => {
-    form.controls[name].value = (e.target as HTMLInputElement).value;
+    console.log(e);
     validate();
   }}
   {name}

@@ -4,11 +4,11 @@
   import CaretDoubleUp from "phosphor-svelte/lib/CaretDoubleUp";
   import CaretUpDown from "phosphor-svelte/lib/CaretUpDown";
   import Check from "phosphor-svelte/lib/Check";
-  import { onMount, type Snippet } from "svelte";
-  import { Validation, type Form } from "..";
+  import { type Snippet } from "svelte";
+  import { Validation, type Instance } from "..";
 
   type Props<T> = any & {
-    form: Form<T>;
+    form: Instance<T>;
     name: string;
     placeholder?: string;
     class?: string;
@@ -20,21 +20,21 @@
   let { form, children, name, data, placeholder, class: className, prefix, ...rest }: Props<T> = $props();
 
   const validate = () => {
-    form.controls[name].errors.set({});
+    form.controls[name].errors = {};
     if (form.controls[name].validators) {
       for (const validator of form.controls[name].validators) {
         const result = validator.fn(form.controls[name].value);
         if (result && result.length > 0) {
-          form.controls[name].errors.update((errors) => {
-            errors[validator.name] = result;
-            return errors;
-          });
+          form.controls[name].errors[validator.name] = result;
         }
       }
     }
   };
 
-  onMount(() => validate());
+  // onMount(() => validate());
+  if (!form.controls[name]) {
+    throw new Error(`Control ${name} not found`);
+  }
 </script>
 
 <Select.Root onValueChange={validate} bind:value={form.controls[name].value} {...rest} class={className}>
