@@ -9,7 +9,7 @@
     }
   },
   "files": [
-    "."
+    "./"
   ],
   "scripts": {
     "check": "exit 0;svelte-check --tsconfig ./tsconfig.json",
