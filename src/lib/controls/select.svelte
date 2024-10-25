@@ -5,10 +5,10 @@
   import CaretUpDown from "phosphor-svelte/lib/CaretUpDown";
   import Check from "phosphor-svelte/lib/Check";
   import { onMount, type Snippet } from "svelte";
-  import { Validation, type Form } from "..";
+  import { Validation, type FormInstance } from "..";
 
   type Props<T> = any & {
-    form: Form<T>;
+    form: FormInstance<T>;
     name: string;
     placeholder?: string;
     class?: string;

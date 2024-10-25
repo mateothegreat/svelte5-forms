@@ -1,30 +1,23 @@
-import { writable, type Writable } from "svelte/store";
 import type { Validator } from "./validators/validator";
 
 export const FORM_MANAGER_KEY = Symbol("form-manager");
 
-export class Form<T> {
+export class FormInstance<T> {
   controls: Record<string, Control<T>> = {};
-  errors?: Writable<Record<string, string[]>> = writable({});
-  values?: Writable<Record<string, T>> = writable({});
-  // get values() {
-  //   const result: Writable<Record<string, T>> = writable({});
-  //   const keys = Object.keys(this.controls);
+  errors?: Record<string, string[]>;
 
-  //   for (const key of keys) {
-  //     result.update((values) => {
-  //       values[key] = this.controls[key].value;
-  //       return values;
-  //     });
-  //   }
-
-  //   console.log(result);
-
-  //   return result;
-  // }
+  get values() {
+    const result: Record<string, T> = {};
+    const keys = Object.keys(this.controls);
+    const values = keys.map((key) => this.controls[key].value);
+    for (let i = 0; i < keys.length; i++) {
+      result[keys[i]] = values[i];
+    }
+    return result;
+  }
 }
 
-export let form: Form<any>;
+export let form: FormInstance<any>;
 
 /**
  * Create a form with an array of controls.
@@ -32,8 +25,8 @@ export let form: Form<any>;
  * @param controls - An array of controls to be added to the form.
  * @returns Returns a {Form} object.
  */
-export const createForm = <T>(name: string, controls: Control<any>[]): Form<T> => {
-  const form = new Form<T>();
+export const createForm = <T>(name: string, controls: Control<any>[]): FormInstance<T> => {
+  const form = new FormInstance<T>();
 
   for (const control of controls) {
     form.controls[control.name] = control;
@@ -46,13 +39,13 @@ export const createForm = <T>(name: string, controls: Control<any>[]): Form<T> =
  */
 class Control<T> {
   name: string;
-  value?: Writable<T>;
+  value? = $state<T>();
   data?: T[];
   displayFn?: (item: T) => string;
   disabled?: boolean;
   max?: number;
   validators?: Validator<T>[];
-  errors?: Writable<Record<string, string[]>> = writable({});
+  errors?: Record<string, string[]> = $state({});
 
   constructor(obj: Control<T>) {
     Object.assign(this, obj);
@@ -68,8 +61,4 @@ class Control<T> {
  */
 export const createControl = <T>(config: Control<T>): Control<T> => {
   return new Control<T>(config);
-};
-
-export const getValues = <T>(form: Form<T>): Writable<Record<string, T>> => {
-  return form.values;
 };
