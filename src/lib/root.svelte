@@ -1,14 +1,24 @@
-<script lang="ts">
-  import type { Snippet } from "svelte";
+<script lang="ts" generics="T">
+  import { onMount, type Snippet } from "svelte";
   import { twMerge } from "tailwind-merge";
-  type Props = {
-    label: string;
-    description?: string;
+  import { createForm } from "./form.svelte";
+  import type { Control, Instance } from "./types";
+
+  type Props<T> = {
+    form: Instance<T>;
+    controls: Control<T>[];
     class?: string;
     children: Snippet;
   };
 
-  let { children, class: className }: Props = $props();
+  let { form = $bindable(), controls, children, class: className }: Props<T> = $props();
+
+  form = createForm(controls);
+
+  onMount(() => {
+    console.log(form);
+    console.log(controls);
+  });
 </script>
 
 <div class={twMerge("flex flex-col gap-0.5 px-[1px]", className)}>

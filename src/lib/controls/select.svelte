@@ -4,11 +4,11 @@
   import CaretDoubleUp from "phosphor-svelte/lib/CaretDoubleUp";
   import CaretUpDown from "phosphor-svelte/lib/CaretUpDown";
   import Check from "phosphor-svelte/lib/Check";
-  import { onMount, type Snippet } from "svelte";
-  import { Validation, type FormInstance } from "..";
+  import { type Snippet } from "svelte";
+  import { Validation, type Instance } from "..";
 
   type Props<T> = any & {
-    form: FormInstance<T>;
+    form: Instance<T>;
     name: string;
     placeholder?: string;
     class?: string;
@@ -31,7 +31,10 @@
     }
   };
 
-  onMount(() => validate());
+  // onMount(() => validate());
+  if (!form.controls[name]) {
+    throw new Error(`Control ${name} not found`);
+  }
 </script>
 
 <Select.Root onValueChange={validate} bind:value={form.controls[name].value} {...rest} class={className}>
