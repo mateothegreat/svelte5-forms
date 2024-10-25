@@ -1,8 +1,8 @@
 <script lang="ts" generics="T">
   import { onMount, type Snippet } from "svelte";
   import { twMerge } from "tailwind-merge";
-  import { createForm } from "./form.svelte";
-  import type { Control, Instance } from "./types";
+  import { Control, createForm } from "./form.svelte";
+  import type { Instance } from "./types";
 
   type Props<T> = {
     form: Instance<T>;

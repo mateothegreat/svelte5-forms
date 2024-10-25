@@ -22,7 +22,6 @@ class Control<T> {
  */
 export const createForm = <T>(controls: Control<any>[]): Instance<T> => {
   const form = new Instance<T>();
-
   for (const control of controls) {
     form.controls[control.name] = createControl(control);
   }

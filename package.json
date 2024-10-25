@@ -15,7 +15,7 @@
   "scripts": {
     "check": "exit 0;svelte-check --tsconfig ./tsconfig.json",
     "build": "npm run check && rimraf dist && cpx 'src/lib/**/*' dist && cpx package.json dist",
-    "release": "svelte-package && cp package.json package.json && cd dist && npm publish"
+    "release": "svelte-package && cp package.json dist/package.json && cd dist && npm publish"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.3.6",
