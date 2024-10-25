@@ -30,7 +30,7 @@
       name: "foobar",
       data: items,
       validators: [minLength(2)],
-      displayFn: (data) => {
+      displayFn: (data: (typeof items)[number]) => {
         return data.label;
       }
     },

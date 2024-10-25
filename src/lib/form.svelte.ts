@@ -4,7 +4,7 @@ import type { Validator } from './validators/validator';
 /**
  * A control object.
  */
-class Control<T> {
+export class Control<T> {
   name: string;
   value?: T = $state();
   data?: T[];
