@@ -1,6 +1,6 @@
 {
   "name": "@mateothegreat/svelte5-forms",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "svelte": "./dist/index.js",
   "main": "./dist/index.js",
