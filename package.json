@@ -18,10 +18,10 @@
     "release": "svelte-package && cp package.json dist/package.json && cd dist && npm publish"
   },
   "devDependencies": {
-    "@sveltejs/package": "^2.3.6",
+    "@sveltejs/package": "^2.3.7",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "@tsconfig/svelte": "^5.0.4",
-    "@types/node": "^22.7.9",
+    "@types/node": "^22.8.1",
     "bits-ui": "1.0.0-next.29",
     "cpx": "^1.5.0",
     "phosphor-svelte": "^2.0.1",
@@ -29,7 +29,7 @@
     "prettier-plugin-svelte": "^3.2.7",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "rimraf": "^6.0.1",
-    "svelte": "^5.1.2",
+    "svelte": "^5.1.3",
     "svelte-check": "^4.0.5",
     "svelte-package": "^0.1.0",
     "tailwind-merge": "^2.5.4",
