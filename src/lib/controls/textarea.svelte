@@ -34,7 +34,7 @@
   });
 </script>
 
-<input
+<textarea
   bind:value={ctx.form.controls[name].value}
   onchange={(e: Event) => {
     validate();
@@ -43,7 +43,7 @@
   {placeholder}
   {type}
   class={twMerge(
-    "placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border-2 border-slate-800 bg-zinc-950 px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
+    "placeholder:text-muted-foreground focus-visible:ring-ring flex h-20 w-full rounded-md border-2 border-slate-800 bg-zinc-950 px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
     className
   )}
   {...rest} />

@@ -6,10 +6,9 @@
   import Check from "phosphor-svelte/lib/Check";
   import { onMount, type Snippet } from "svelte";
   import { Validation } from "..";
-  import { FormInstance } from "./../types";
+  import { useContext } from "../context";
 
   type Props<T> = any & {
-    form: FormInstance<T>;
     name: string;
     placeholder?: string;
     class?: string;
@@ -18,32 +17,32 @@
     prefix?: Snippet;
   };
 
-  let { form, children, name, data, placeholder, class: className, prefix, ...rest }: Props<T> = $props();
+  let { children, name, data, placeholder, class: className, prefix, ...rest }: Props<T> = $props();
+
+  const ctx = useContext();
 
   const validate = () => {
-    form.controls[name].errors = {};
-    if (form.controls[name].validators) {
-      for (const validator of form.controls[name].validators) {
-        const result = validator.fn(form.controls[name].value);
+    ctx.form.controls[name].errors = {};
+    if (ctx.form.controls[name].validators) {
+      for (const validator of ctx.form.controls[name].validators) {
+        const result = validator.fn(ctx.form.controls[name].value);
         if (result && result.length > 0) {
-          form.controls[name].errors[validator.name] = result;
+          ctx.form.controls[name].errors[validator.name] = result;
         }
       }
     }
-    form.controls[name].valid = Object.values(form.controls[name].errors).every((error) => {
-      return typeof error === "string" && error.length === 0;
-    });
+    ctx.form.controls[name].valid = Object.values(ctx.form.controls[name].errors).every((error) => error.length === 0);
   };
 
   // onMount(() => validate());
-  if (!form.controls[name]) {
+  if (!ctx.form.controls[name]) {
     throw new Error(`Control ${name} not found`);
   }
 
   onMount(() => validate());
 </script>
 
-<Select.Root onValueChange={validate} bind:value={form.controls[name].value} {...rest} class={className}>
+<Select.Root onValueChange={validate} bind:value={ctx.form.controls[name].value} {...rest} class={className}>
   <Select.Trigger
     class="border-border-input bg-background inline-flex h-10 select-none items-center rounded-lg border-2 border-slate-800 px-[11px] text-sm transition-colors">
     {#if prefix}
@@ -51,8 +50,8 @@
         {@render prefix()}
       </div>
     {/if}
-    {#if Array.isArray(form.controls[name].value) && form.controls[name].value.length > 0}
-      {form.controls[name].value.join(", ")}
+    {#if Array.isArray(ctx.form.controls[name].value) && ctx.form.controls[name].value.length > 0}
+      {ctx.form.controls[name].value.join(", ")}
     {:else}
       <div class="text-muted-foreground">{placeholder}</div>
     {/if}
@@ -66,13 +65,13 @@
         <CaretDoubleUp class="size-3" />
       </Select.ScrollUpButton>
       <Select.Viewport class="p-1">
-        {#each form.controls[name].data as item}
+        {#each ctx.form.controls[name].data as item}
           <Select.Item
             class="rounded-button data-[highlighted]:bg-muted flex h-9 w-full select-none items-center py-3 pl-5 pr-1.5 text-sm capitalize outline-none duration-75"
-            value={form.controls[name].displayFn ? form.controls[name].displayFn(item) : String(item)}>
+            value={ctx.form.controls[name].displayFn ? ctx.form.controls[name].displayFn(item) : String(item)}>
             {#snippet children({ selected })}
-              {#if form.controls[name].displayFn}
-                {form.controls[name].displayFn(item)}
+              {#if ctx.form.controls[name].displayFn}
+                {ctx.form.controls[name].displayFn(item)}
               {/if}
               {#if selected}
                 <div class="ml-auto">
@@ -90,4 +89,4 @@
   </Select.Portal>
 </Select.Root>
 
-<Validation results={form.controls[name].errors} />
+<Validation results={ctx.form.controls[name].errors} />
