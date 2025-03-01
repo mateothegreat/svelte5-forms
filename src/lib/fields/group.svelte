@@ -1,14 +1,19 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import { twMerge } from "tailwind-merge";
   type Props = {
     class?: string;
     children: Snippet;
   };
+  const r = $props();
+  const uid = $props.id();
 
-  let { children, class: className }: Props = $props();
+  console.log("uid", uid, r);
 </script>
 
+{uid}
+<!--
 <div class={twMerge("flex flex-col gap-6", className)}>
-  {@render children()}
-</div>
+</div> -->
+
+<!-- {@render children?.()} -->
+<svelte:options accessors={true} />

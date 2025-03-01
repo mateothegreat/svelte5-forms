@@ -1,27 +1,28 @@
 <script lang="ts">
-  import { type Snippet } from "svelte";
-  import { twMerge } from "tailwind-merge";
-  import { createContext } from "./context";
-  import { Control, createForm } from "./form.svelte";
-  import type { FormInstance } from "./types";
+  import { render } from "svelte/server";
+  import type { FormGroup } from "./group";
+
+  // const ctx = createContext(createForm<any>(controls));
+  // form = ctx.form;
+  // console.log("form", children.call({}));
+  let x: HTMLDivElement;
 
   type Props = {
-    form: FormInstance<any>;
-    valid?: boolean;
-    controls: Control<any>[];
-    class?: string;
-    children: Snippet;
+    groups: FormGroup[];
   };
 
-  let { form = $bindable(), controls, children, class: className }: Props = $props();
+  let { form, ...props } = $props();
 
-  const ctx = createContext(createForm<any>(controls));
-  form = ctx.form;
-  console.log("form", form);
+  console.log(form);
+  $inspect(form);
 </script>
 
-{ctx.form}
-
-<div class={twMerge("flex flex-col gap-0.5 px-[1px]", className)}>
-  {@render children()}
-</div>
+{#each form.groups as group}
+  {group.controls.length}
+  {#each group.controls as control, i}
+    {@render control({
+      control,
+      i
+    })}
+  {/each}
+{/each}

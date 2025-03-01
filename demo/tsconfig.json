@@ -17,11 +17,17 @@
     "noEmit": true,
     "moduleResolution": "bundler",
     "paths": {
+      "$lib": [
+        "../src/lib"
+      ],
+      "$lib/*": [
+        "../src/lib/*"
+      ],
       "@mateothegreat/svelte5-forms": [
-        "../../src/lib"
+        "../src/lib"
       ],
       "@mateothegreat/svelte5-forms/*": [
-        "../../src/lib/*"
+        "../src/lib/*"
       ]
     },
   },
