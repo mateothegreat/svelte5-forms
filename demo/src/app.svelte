@@ -3,6 +3,7 @@
   import { createForm } from "$lib/form";
   import * as Form from "@mateothegreat/svelte5-forms";
   import { Palette } from "phosphor-svelte";
+  import { onMount } from "svelte";
 
   const form = createForm();
 
@@ -85,7 +86,28 @@
   //     Object.values(form.controls.values()).filter((v: any) => v).length
   //   );
   // }, 1000);
+
+  let x: HTMLElement;
+  const manual = createForm();
+  manual.addControl({
+    name: "manual",
+    type: ControlType.INPUT,
+    value: "manual"
+  });
+  const Cmp = manual.controls.get("manual").create();
+  console.log(Cmp);
+  onMount(() => {
+    x.appendChild(Cmp.domNodes[0]);
+  });
+  // setInterval(() => {
+  //   manual.controls.get("manual").value = Math.random().toString(36).substring(2, 8);
+  // }, 100);
 </script>
+
+<!-- <svelte:self bind:x /> -->
+<div bind:this={x} class="m-10"></div>
+
+{manual.controls.get("manual").value}
 
 <div class="m-5 w-fit flex flex-col gap-4 border border-gray-900 rounded-lg">
   <table class="divide-y divide-gray-900">

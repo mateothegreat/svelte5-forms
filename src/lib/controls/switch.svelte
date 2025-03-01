@@ -14,7 +14,7 @@
     children?: Snippet;
   };
 
-  let { name, placeholder, value, class: className, type = "text", children, ...rest }: Props = $props();
+  let { control, form, ...rest }: ControlProps = $props();
 
   const ctx = useContext();
 

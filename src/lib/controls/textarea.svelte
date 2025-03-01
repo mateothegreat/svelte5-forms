@@ -12,7 +12,7 @@
     type?: string;
   };
 
-  let { name, placeholder, value, class: className, type = "text", ...rest }: Props = $props();
+  let { control, form, ...rest }: ControlProps = $props();
 
   const ctx = useContext();
 

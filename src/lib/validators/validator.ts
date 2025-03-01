@@ -10,7 +10,7 @@ export interface ValidationResult {
   /**
    * The validation messages.
    */
-  messages?: string[];
+  message?: string | string[];
 }
 
 /**

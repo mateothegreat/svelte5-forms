@@ -33,6 +33,7 @@
     "svelte-check": "^4.1.4",
     "svelte-package": "^0.1.0",
     "tailwind-merge": "^3.0.2",
+    "tailwindcss": "^4.0.9",
     "typescript": "^5.8.2",
     "vite": "^6.2.0",
     "vite-plugin-dts": "^4.5.1"

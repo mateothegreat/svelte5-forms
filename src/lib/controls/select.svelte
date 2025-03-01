@@ -17,7 +17,7 @@
     prefix?: Snippet;
   };
 
-  let { children, name, data, placeholder, class: className, prefix, ...rest }: Props<T> = $props();
+  let { control, form, ...rest }: ControlProps = $props();
 
   const ctx = useContext();
 
