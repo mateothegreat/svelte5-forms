@@ -3,10 +3,6 @@ import type { Form, FormState } from "./form";
 
 import { ReactiveMap } from "./utilities/reactive-map.svelte";
 
-export type ContainerItem = {
-  name: string;
-};
-
 /**
  * A container that manages a collection of controls and provides reactive state management.
  */

@@ -1,6 +1,6 @@
+import { FormGroup } from "./attic/group";
 import type { Control, ControlConfig } from "./control.svelte";
 import { ControlsContainer } from "./controls.svelte";
-import { FormGroup } from "./group";
 
 export type FormState = Record<string, Pick<Control, "value" | "disabled" | "errors" | "pristine" | "valid" | "type">>;
 

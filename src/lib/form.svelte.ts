@@ -1,4 +1,4 @@
-import { FormInstance } from './types';
+import { FormInstance } from './attic/types';
 import type { Validator } from './validators/validator';
 
 /**

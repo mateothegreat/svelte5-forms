@@ -1,42 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { twMerge } from "tailwind-merge";
-  import { useContext } from "../context";
   import type { ControlProps } from "../control.svelte";
-  import Validation from "../validators/validation.svelte";
 
-  let { control, form, ...rest }: ControlProps = $props();
-
-  const ctx = useContext();
-
-  const validate = () => {
-    // ctx.form.controls[name].errors = {};
-    // if (ctx.form.controls[name].validators) {
-    //   for (const validator of ctx.form.controls[name].validators) {
-    //     const result = validator.fn(ctx.form.controls[name].value);
-    //     if (result && result.length > 0) {
-    //       ctx.form.controls[name].errors[validator.name] = result;
-    //     }
-    //   }
-    // }
-    // ctx.form.controls[name].valid = Object.values(ctx.form.controls[name].errors).every((error) => error.length === 0);
-  };
-
-  onMount(() => {
-    console.log(control);
-    validate();
-  });
+  let { control, ...rest }: ControlProps = $props();
 </script>
 
-<div class="bg-slate-800 m-5">
+<div class="m-5 bg-slate-800">
   {JSON.stringify(control)}
 </div>
 asdf
 <input
   bind:value={control.value}
-  onchange={(e: Event) => {
-    validate();
-  }}
   name={control.name}
   placeholder={control.placeholder}
   type={control.type}
@@ -59,9 +33,9 @@ asdf
     file:bg-transparent
     file:text-sm
     file:font-medium
-    focus-visible:outline-none
     focus-visible:ring-2
     focus-visible:ring-indigo-500
+    focus-visible:outline-none
     disabled:cursor-not-allowed
     disabled:opacity-50
   `,
@@ -69,4 +43,4 @@ asdf
   )}
   {...rest} />
 
-<Validation results={control.errors} />
+<!-- <Validation results={control.errors} /> -->

@@ -1,5 +1,5 @@
-export { default as Input } from "./input.svelte";
-export { default as Select } from "./select.svelte";
-export { default as Switch } from "./switch.svelte";
-export { default as Textarea } from "./textarea.svelte";
+export { Control, ControlType } from "../control.svelte";
+export type { ControlComponents, ControlConfig, ControlProps } from "../control.svelte";
+export { ControlsContainer } from "../controls.svelte";
+export { createControl, createForm } from "../form.svelte";
 

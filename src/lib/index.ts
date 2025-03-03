@@ -1,13 +1,9 @@
-export { default as Field } from "./fields/field.svelte";
-// export { default as Group } from "./fields/group.svelte";
-export { default as Description } from "./header/description.svelte";
-export { default as Root } from "./root.svelte";
+export { Control, ControlType } from "./control.svelte";
+export type { ControlComponents, ControlConfig, ControlProps } from "./control.svelte";
+export { ControlsContainer } from "./controls.svelte";
+export { createControl, createForm } from "./form.svelte";
+export { between } from "./validators/between";
+export { email } from "./validators/email";
+export { required } from "./validators/required";
+export type { ValidationResult, Validator } from "./validators/validator";
 
-export * as Controls from "./controls";
-export * as Header from "./header";
-
-export { createForm, FormInstance } from "./types";
-export * from "./validators";
-export { group as Group };
-
-import group from "./group.svelte";
