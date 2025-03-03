@@ -20,6 +20,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.svelte",
-    "src/**/*.svelte.ts"
+    "src/**/*.svelte.ts",
+    "demo/src/form/reusable-input.svelte"
   ]
 }

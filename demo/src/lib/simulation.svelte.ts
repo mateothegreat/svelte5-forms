@@ -87,7 +87,7 @@ export const start = (
       "remove",
       setInterval(() => {
         const controls = form.controls.items();
-        const randomControl = form.controls.items()[random(0, controls.length - 1)];
+        const randomControl = form.controls.items().filter((control) => !control.props?.protected)[random(0, controls.length - 1)];
         if (randomControl) {
           form.controls.remove(randomControl.name);
         }

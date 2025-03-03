@@ -2,23 +2,13 @@ import { type Snippet } from "svelte";
 
 import type { Form } from "./form";
 
-import Input from "./controls/input.svelte";
-import type Wrapper from "./controls/wrapper.svelte";
 import type { ValidationResult, Validator } from "./validators/validator";
 
 export enum ControlType {
-  INPUT = "input"
-  // SELECT = "select",
-  // SWITCH = "switch",
-  // TEXTAREA = "textarea"
+  text = "text",
+  options = "options",
+  boolean = "boolean"
 }
-
-export const ControlComponents = {
-  [ControlType.INPUT]: Input
-  // [ControlType.SELECT]: Select,
-  // [ControlType.SWITCH]: Switch,
-  // [ControlType.TEXTAREA]: Textarea
-};
 
 export type ControlConfig = {
   name: string;
@@ -27,11 +17,7 @@ export type ControlConfig = {
   disabled?: boolean;
   group?: string;
   validators?: Validator<any>[];
-};
-
-export type ControlProps = {
-  control: Control;
-  instance?: Wrapper;
+  props?: Record<string, any>;
 };
 
 export class Control<T = any> {
@@ -41,6 +27,7 @@ export class Control<T = any> {
   placeholder?: T;
   class?: string;
   validators?: Validator<any>[];
+  props?: Record<string, any>;
 
   #form: Form;
   #value = $state<T>();
@@ -57,6 +44,8 @@ export class Control<T = any> {
     this.type = control.type;
     this.group = control.group;
     this.validators = control.validators;
+    this.props = control.props;
+
     this.#value = control.value;
     this.#disabled = control.disabled;
   }

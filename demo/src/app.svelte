@@ -1,23 +1,30 @@
 <script lang="ts">
   import { createForm } from "$lib/form";
+  import * as Form from "$lib/index";
   import { CheckCircle2, Pause, Play, XCircle } from "lucide-svelte";
+  import CustomForm from "./form/custom-form.svelte";
   import Badge from "./lib/components/badge.svelte";
   import { get, start, stop } from "./lib/simulation.svelte";
 
-  const form = createForm();
+  const form = createForm({
+    name: "form-1"
+  });
+
+  form.add({
+    name: "test-1",
+    type: Form.ControlType.INPUT,
+    props: {
+      protected: true
+    }
+  });
+
+  form.add({
+    name: "test-2",
+    type: Form.ControlType.INPUT,
+    props: { protected: true }
+  });
+
   const values = $derived(form.controls.valuesFor("value", "disabled", "type", "valid", "pristine"));
-
-  // for (let i = 0; i < random(4, get().maxControls); i++) {
-  //   if (form.controls.size < get().maxControls) {
-  //     form.add({
-  //       name: randomString(10),
-  //       type: getRandomControlType(),
-  //       group: "group-1"
-  //     });
-  //   }
-  // }
-
-  // stop(form);
 
   let { disabled, enabled } = $state({ disabled: 0, enabled: 0 });
   let { pristine, dirty } = $state({ pristine: 0, dirty: 0 });
@@ -30,7 +37,6 @@
    * and then reduce the controls to the counters.
    */
   $effect(() => {
-    // Filter out deleted controls from the derived values
     const activeControls = form.controls.items().filter((c) => !c.deleted);
 
     ({ disabled, enabled } = activeControls.reduce(
@@ -75,7 +81,7 @@
   let x: HTMLDivElement;
 </script>
 
-<div class="flex h-[50vh] flex-col gap-5 text-[12px]">
+<div class="flex flex-col gap-5 text-[12px]">
   <div
     class="flex items-center justify-between gap-2 border-b-2 bg-indigo-950/60 p-4 text-xs"
     class:border-fuchsia-700={!get().running}
@@ -187,9 +193,7 @@
   </div>
 </div>
 
-<!-- <div class="flex h-[50vh] flex-col gap-5 text-[12px]">
-  <RandomControl {form} />
-</div> -->
+<CustomForm />
 
 <style>
   /* Custom scrollbar styling */

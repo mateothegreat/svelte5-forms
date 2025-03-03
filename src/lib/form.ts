@@ -1,19 +1,29 @@
-import { FormGroup } from "./attic/group";
-import type { Control, ControlConfig } from "./control.svelte";
+import type { Component } from "svelte";
+
+import type { Control, ControlConfig, ControlType } from "./control.svelte";
 import { ControlsContainer } from "./controls.svelte";
+
+import { FormGroup } from "./attic/group";
 
 export type FormState = Record<string, Pick<Control, "value" | "disabled" | "errors" | "pristine" | "valid" | "type">>;
 
+export type FormConfig = {
+  name?: string;
+  components: Partial<{
+    [K in ControlType]: Component<any>;
+  }>;
+};
+
 export class Form {
   name?: string;
+  components: Partial<{
+    [K in ControlType]: Component<any>;
+  }> = {};
   controls: ControlsContainer = new ControlsContainer();
 
-  constructor(form?: Form) {
+  constructor(form?: FormConfig) {
     this.name = form?.name || Math.random().toString(36).substring(2, 15);
-
-    for (const control of form?.controls.items() || []) {
-      this.add(control);
-    }
+    this.components = form?.components || {};
   }
 
   add(control: ControlConfig): Control {
@@ -36,6 +46,6 @@ export class Form {
   }
 }
 
-export const createForm = (form?: Form): Form => {
-  return new Form(form);
+export const createForm = (config?: FormConfig): Form => {
+  return new Form(config);
 };
