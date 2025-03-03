@@ -31,7 +31,7 @@
 <div class="bg-slate-800 m-5">
   {JSON.stringify(control)}
 </div>
-
+asdf
 <input
   bind:value={control.value}
   onchange={(e: Event) => {

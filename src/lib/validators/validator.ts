@@ -20,12 +20,12 @@ export interface Validator<T> {
   /**
    * The name of the validator.
    */
-  name: string;
+  name?: string;
 
   /**
    * The validation function.
    * @param {T} value The value to validate.
    * @returns {ValidationResult} The validation result.
    */
-  fn: (value: T) => string[];
+  fn: (value: T) => ValidationResult | ValidationResult[];
 }

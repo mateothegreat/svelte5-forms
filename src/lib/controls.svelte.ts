@@ -1,4 +1,5 @@
 import { Control, type ControlConfig } from "./control.svelte";
+import type { Form, FormState } from "./form";
 
 import { ReactiveMap } from "./utilities/reactive-map.svelte";
 
@@ -16,11 +17,13 @@ export class ControlsContainer {
    * Adds a control to the container.
    * If no name is provided, a random one will be generated.
    */
-  add(item: ControlConfig): Control {
+  add(form: Form, item: ControlConfig): Control {
     if (!item.name) {
       item.name = Math.random().toString(36).substring(2, 15);
     }
-    return this.#items.set(item.name, new Control(item)).get(item.name);
+    const control = new Control(form, item);
+    this.#items.set(item.name, control);
+    return control;
   }
 
   set(name: string, prop: string, value: any): Control {
@@ -37,14 +40,27 @@ export class ControlsContainer {
    * Removes a control from the container.
    */
   remove(name: string): boolean {
-    return this.#items.delete(name);
+    const item = this.#items.get(name);
+    if (item) {
+      // Call delete on the control first
+      // item.delete();
+
+      // Then remove from the map:
+      return this.#items.delete(name);
+    }
+    return false;
   }
 
   /**
    * Gets a control by name.
    */
   get<T>(name: string): Control<T> {
-    return this.#items.get(name);
+    const item = this.#items.get(name);
+    if (!item) {
+      throw new Error(`control with name ${name} not found`);
+    }
+    const derived = $derived(item);
+    return derived;
   }
 
   /**
@@ -67,6 +83,21 @@ export class ControlsContainer {
       });
     }
     return values;
+  }
+
+  state(): FormState {
+    const state: FormState = {};
+    for (const [name, item] of this.#items) {
+      state[name] = {
+        value: item.value,
+        disabled: item.disabled,
+        errors: item.errors,
+        pristine: item.pristine,
+        valid: item.valid,
+        type: item.type
+      };
+    }
+    return state;
   }
 
   /**

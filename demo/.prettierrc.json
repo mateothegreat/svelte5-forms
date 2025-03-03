@@ -1,0 +1,59 @@
+{
+  "bracketSameLine": true,
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "ignore",
+  "jsonRecursiveSort": true,
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte",
+        "svelteBracketNewLine": false,
+        "svelteIndentScriptAndStyle": true,
+        "svelteSortOrder": "scripts-markup-styles-options",
+        "svelteStrictMode": false
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "printWidth": 79,
+        "tabWidth": 2,
+        "useTabs": false
+      }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    },
+    {
+      "files": "*",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "jsonRecursiveSort": true,
+        "printWidth": 20,
+        "singleAttributePerLine": true
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss", "prettier-plugin-sort-json"],
+  "printWidth": 180,
+  "singleAttributePerLine": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "useTabs": false
+}

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5179",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check"
@@ -14,6 +14,7 @@
     "@tailwindcss/vite": "^4.0.9",
     "@tsconfig/svelte": "^5.0.4",
     "autoprefixer": "^10.4.20",
+    "prettier-plugin-sort-json": "^4.1.1",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "svelte": "^5.20.5",

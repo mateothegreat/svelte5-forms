@@ -26,6 +26,7 @@
     "cpx": "^1.5.0",
     "phosphor-svelte": "^3.0.1",
     "prettier": "^3.5.2",
+    "prettier-plugin-sort-json": "^4.1.1",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^6.0.1",
@@ -40,5 +41,8 @@
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
+  },
+  "dependencies": {
+    "lucide-svelte": "^0.477.0"
   }
 }

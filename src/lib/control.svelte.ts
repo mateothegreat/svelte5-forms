@@ -1,23 +1,23 @@
-import { mount, type Snippet } from "svelte";
+import { type Snippet } from "svelte";
 
-import { Select, Switch, Textarea } from "./controls";
 import type { Form } from "./form";
 
 import Input from "./controls/input.svelte";
-import type { ValidationResult } from "./validators/validator";
+import type Wrapper from "./controls/wrapper.svelte";
+import type { ValidationResult, Validator } from "./validators/validator";
 
 export enum ControlType {
-  INPUT = "input",
-  SELECT = "select",
-  SWITCH = "switch",
-  TEXTAREA = "textarea"
+  INPUT = "input"
+  // SELECT = "select",
+  // SWITCH = "switch",
+  // TEXTAREA = "textarea"
 }
 
 export const ControlComponents = {
-  [ControlType.INPUT]: Input,
-  [ControlType.SELECT]: Select,
-  [ControlType.SWITCH]: Switch,
-  [ControlType.TEXTAREA]: Textarea
+  [ControlType.INPUT]: Input
+  // [ControlType.SELECT]: Select,
+  // [ControlType.SWITCH]: Switch,
+  // [ControlType.TEXTAREA]: Textarea
 };
 
 export type ControlConfig = {
@@ -26,11 +26,12 @@ export type ControlConfig = {
   value?: any;
   disabled?: boolean;
   group?: string;
+  validators?: Validator<any>[];
 };
 
 export type ControlProps = {
-  form: Form;
   control: Control;
+  instance?: Wrapper;
 };
 
 export class Control<T = any> {
@@ -39,19 +40,34 @@ export class Control<T = any> {
   group?: string;
   placeholder?: T;
   class?: string;
+  validators?: Validator<any>[];
 
+  #form: Form;
   #value = $state<T>();
   #disabled = $state<boolean>();
   #component: Snippet;
-  #errors = $state<ValidationResult[]>([]);
+  #errors = $state<ValidationResult | ValidationResult[]>();
+  #pristine = $state<boolean>(true);
+  #valid = $state<boolean>(true);
+  #deleted = $state(false);
 
-  constructor(control: ControlConfig) {
+  constructor(form: Form, control: ControlConfig) {
+    this.form = form;
     this.name = control.name;
     this.type = control.type;
     this.group = control.group;
-
+    this.validators = control.validators;
     this.#value = control.value;
     this.#disabled = control.disabled;
+  }
+
+  get form() {
+    return this.#form;
+  }
+
+  set form(val: Form) {
+    this.#form = val;
+    this.#pristine = false;
   }
 
   get value() {
@@ -60,6 +76,7 @@ export class Control<T = any> {
 
   set value(val: T) {
     this.#value = val;
+    this.validate();
   }
 
   get disabled() {
@@ -74,29 +91,67 @@ export class Control<T = any> {
     return this.#errors;
   }
 
-  set errors(val: ValidationResult[]) {
+  set errors(val: ValidationResult | ValidationResult[]) {
     this.#errors = val;
+    this.#valid = Array.isArray(val) ? val.every((v) => v.valid) : val.valid;
   }
 
   get component() {
     return this.#component;
   }
 
+  get pristine() {
+    return this.#pristine;
+  }
+
+  get valid() {
+    return this.#valid;
+  }
+
+  set valid(val: boolean) {
+    this.#valid = val;
+  }
+
+  get deleted() {
+    return this.#deleted;
+  }
+
+  validate() {
+    const result = this.validators?.map((v) => v.fn(this.value)) ?? [];
+    const flatResults = result.flat();
+    this.errors = flatResults;
+    this.valid = flatResults.every((v) => v.valid);
+    return flatResults;
+  }
+
   create() {
-    const content = document.createElement("div");
-    mount(ControlComponents[this.type], {
-      target: content,
-      props: {
-        control: this,
-        form: null
-      }
-    });
-    return {
-      domNodes: [content]
-    };
+    const cmp = ControlComponents[this.type];
+    // const div = document.createElement("div");
+    // const a = await import("./controls/input.svelte");
+    // console.log(a);
+    // const cmp = a.default(div, {
+    //   control: this,
+    //   form: null,
+    //   props: {
+    //     control: this,
+    //     form: null
+    //   }
+    // });
+    return cmp;
+    // return {
+    //   domNodes: [content]
+    // };
+  }
+
+  delete() {
+    // console.log("delete", this.name);
+    // this.#deleted = true;
+    // this.#component = null;
+    // this.#value = null;
+    // this.#disabled = null;
+    // this.#errors = null;
+    // this.#pristine = null;
+    // this.#valid = null;
+    // this.form?.controls.remove(this.name);
   }
 }
-
-export const createControl = <T>(control: ControlConfig): Control<T> => {
-  return new Control(control);
-};
