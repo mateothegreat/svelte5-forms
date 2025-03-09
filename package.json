@@ -8,10 +8,25 @@
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js"
+      "types": "./index.js",
+      "import": "./index.js",
+      "svelte": "./index.js"
     },
     "./styles/app.pcss": "./public/styles/app.pcss"
   },
+  "files": [
+    "./**/*"
+  ],
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateothegreat/svelte5-forms.git"
+  },
+  "keywords": [
+    "svelte 5",
+    "svelte 5 forms",
+    "svelte 5 form library"
+  ],
   "scripts": {
     "check": "exit 0;svelte-check --tsconfig ./tsconfig.json",
     "build": "npm run check && rimraf dist && cpx 'src/lib/**/*' dist && cpx package.json dist",

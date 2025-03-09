@@ -7,7 +7,7 @@ import { ReactiveMap } from "./utilities/reactive-map.svelte";
  * A container that manages a collection of controls and provides reactive state management.
  */
 export class ControlsContainer {
-  #items = new ReactiveMap<string, Control>();
+  #items = $state(new ReactiveMap<string, Control>());
 
   /**
    * Adds a control to the container.

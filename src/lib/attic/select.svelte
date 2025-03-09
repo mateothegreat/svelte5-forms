@@ -2,10 +2,7 @@
   lang="ts"
   generics="T">
   import { Select } from "bits-ui";
-  import CaretDoubleDown from "phosphor-svelte/lib/CaretDoubleDown";
-  import CaretDoubleUp from "phosphor-svelte/lib/CaretDoubleUp";
-  import CaretUpDown from "phosphor-svelte/lib/CaretUpDown";
-  import Check from "phosphor-svelte/lib/Check";
+  import { CaretDoubleDown, Check, CaretDoubleUp, CaretUpDown } from "phosphor-svelte";
   import { onMount, type Snippet } from "svelte";
   import { Validation } from "..";
   import { useContext } from "./context";
