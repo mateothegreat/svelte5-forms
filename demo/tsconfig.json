@@ -18,13 +18,13 @@
     "moduleResolution": "bundler",
     "paths": {
       "$lib": [
-        "../src/lib"
+        "./src/lib"
       ],
       "$lib/*": [
-        "../src/lib/*"
+        "./src/lib/*"
       ],
       "@mateothegreat/svelte5-forms": [
-        "../src/lib"
+        "../src/lib/index"
       ],
       "@mateothegreat/svelte5-forms/*": [
         "../src/lib/*"

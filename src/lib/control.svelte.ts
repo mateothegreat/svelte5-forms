@@ -29,7 +29,7 @@ export class Control<T = any> {
   validators?: Validator<any>[];
   props?: Record<string, any>;
 
-  #form: Form;
+  #form = $state<Form>();
   #value = $state<T>();
   #disabled = $state<boolean>();
   #component: Snippet;
