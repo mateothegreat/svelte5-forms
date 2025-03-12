@@ -24,10 +24,10 @@
         "./src/lib/*"
       ],
       "@mateothegreat/svelte5-forms": [
-        "../src"
+        "../src/lib"
       ],
       "@mateothegreat/svelte5-forms/*": [
-        "../src/*"
+        "../src/lib/*"
       ]
     }
   }
