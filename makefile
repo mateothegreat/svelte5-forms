@@ -58,12 +58,13 @@ check/watch: ## Run svelte-check and tsc commands and then watch for changes.
 	(npx svelte-check --watch & npx tsc -w & cd demo && (npx svelte-check --watch & npx tsc -w)) | cat & \
 	wait
 
-dev: ## Start the development server.
-	@cd demo && npm run dev
-
-build: ## Build the production version of the app.
-	@cd demo && npm run build
+package: ## Build a packaged version of the library.
+	@npm run package
 	@printf "\n✅ Total directory size: $(PINK)$(shell du -sh dist | cut -f1)$(RESET)\n\n"
 
-build/serve: ## Serve the production version of the app.
-	@npm run serve
+demo/run: ## Start the development server.
+	@cd demo && npm run dev
+
+demo/build: ## Build the production version of the app.
+	@cd demo && npm run package
+	@printf "\n✅ Total directory size: $(PINK)$(shell du -sh dist | cut -f1)$(RESET)\n\n"

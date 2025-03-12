@@ -1,0 +1,30 @@
+name: docs
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    tags:
+      - "*"
+permissions:
+  id-token: write
+  pages: write
+jobs:
+  typedoc-github-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Build documentation
+        run: npm run docs:build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: tmp/build
+      - id: deployment
+        name: Deploy documentation to GitHub Pages
+        uses: actions/deploy-pages@v4.0.5

@@ -9,13 +9,13 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "resolveJsonModule": true,
     "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
+    "checkJs": false,
     "strict": true,
     "noEmit": true,
+    "isolatedModules": true,
     "moduleResolution": "bundler",
+    "allowArbitraryExtensions": true,
     "paths": {
       "$lib": [
         "./src/lib"
@@ -29,10 +29,6 @@
       "@mateothegreat/svelte5-forms/*": [
         "../src/*"
       ]
-    },
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.svelte"
-  ]
+    }
+  }
 }

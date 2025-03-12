@@ -1,0 +1,128 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "out": "tmp/build",
+  "entryPoints": [
+    "./src/lib/index.ts",
+  ],
+  "exclude": [
+    "**/*+(.spec|.e2e).ts"
+  ],
+  "externalPattern": [
+    "**/*.md"
+  ],
+  "excludeNotDocumented": true,
+  "excludeExternals": true,
+  "excludeInternal": true,
+  "readme": "docs/readme.md",
+  "cleanOutputDir": true,
+  "hideGenerator": true,
+  "githubPages": false,
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "plugin": [
+    "typedoc-github-theme",
+    "typedoc-plugin-inline-sources",
+    "typedoc-plugin-extras",
+    "typedoc-plugin-include-example",
+    "typedoc-plugin-mermaid"
+  ],
+  "navigationLinks": {
+    "Demo": "https://demo.router.svelte.spa",
+    "GitHub": "https://github.com/mateothegreat/svelte5-router",
+    "NPM": "https://www.npmjs.com/package/@mateothegreat/svelte5-router",
+    "Releases": "https://github.com/mateothegreat/svelte5-router/releases",
+    "Report Issue": "https://github.com/mateothegreat/svelte5-router/issues"
+  },
+  "sidebarLinks": {
+    "Demo": "https://demo.router.svelte.spa",
+    "GitHub": "https://github.com/mateothegreat/svelte5-router",
+    "Releases": "https://github.com/mateothegreat/svelte5-router/releases",
+    "Report Issue": "https://github.com/mateothegreat/svelte5-router/issues"
+  },
+  "headings": {
+    "readme": false,
+    "document": false
+  },
+  "validation": {
+    "notExported": false,
+    "invalidLink": false,
+    "rewrittenLink": false,
+    "notDocumented": false,
+    "unusedMergeModuleWith": false
+  },
+  "navigation": {
+    "includeCategories": true
+  },
+  "categorizeByGroup": false,
+  "categoryOrder": [
+    "actions",
+    "components",
+    "hooks",
+    "utilities"
+  ],
+  "visibilityFilters": {
+    "protected": true,
+    "private": true,
+    "inherited": true,
+    "external": false,
+    "@alpha": true,
+    "@beta": true
+  },
+  "useFirstParagraphOfCommentAsSummary": true,
+  "commentStyle": "all",
+  "blockTags": [
+    "@defaultValue",
+    "@deprecated",
+    "@example",
+    "@param",
+    "@privateRemarks",
+    "@remarks",
+    "@returns",
+    "@see",
+    "@throws",
+    "@typeParam",
+    "@author",
+    "@callback",
+    "@category",
+    "@categoryDescription",
+    "@default",
+    "@document",
+    "@extends",
+    "@augments",
+    "@yields",
+    "@group",
+    "@groupDescription",
+    "@import",
+    "@inheritDoc",
+    "@jsx",
+    "@license",
+    "@module",
+    "@mergeModuleWith",
+    "@prop",
+    "@property",
+    "@return",
+    "@satisfies",
+    "@since",
+    "@template",
+    "@type",
+    "@typedef",
+    "@summary",
+    "@optional",
+    "@source",
+    "@usage",
+    "@note",
+    "@todo"
+  ],
+  "highlightLanguages": [
+    "typescript",
+    "javascript",
+    "svelte"
+  ],
+  "modifierTags": [
+    "@alpha",
+    "@beta",
+    "@experimental"
+  ],
+  "groupReferencesByType": false,
+  "includeVersion": true
+}
