@@ -1,6 +1,6 @@
 {
   "name": "@mateothegreat/svelte5-forms",
-  "version": "0.1.7",
+  "version": "1.0.1-refs-tags-1-0-0.0",
   "type": "module",
   "svelte": "./index.js",
   "main": "./index.js",
