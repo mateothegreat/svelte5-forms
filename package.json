@@ -20,7 +20,7 @@
     "check": "tsc",
     "docs:build": "typedoc --footerLastModified --customTitle \"Svelte 5 Forms\" ",
     "docs:watch": "typedoc --watch --footerLastModified --customTitle \"Svelte 5 Forms\" ",
-    "package": "rm -rf dist && svelte-package && cp package.json dist/package.json && cd dist && npm publish"
+    "package": "rm -rf dist && svelte-package && cp package.json dist/package.json && cp docs/readme.md dist/README.md"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.3.10",
