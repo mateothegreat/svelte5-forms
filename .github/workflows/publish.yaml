@@ -63,8 +63,8 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
       - name: install
         run: npm install
-      - name: build
-        run: npm run build
+      - name: package
+        run: npm run package
       - name: publish
         run: cd dist && npm publish
       - name: create github release
