@@ -4,9 +4,6 @@ on:
     secrets:
       VERCEL_TOKEN:
         required: true
-  push:
-    tags:
-      - "*"
 name: demo
 concurrency:
   group: demo
