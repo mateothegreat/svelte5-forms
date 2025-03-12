@@ -13,7 +13,7 @@
     "./styles/app.pcss": "./public/styles/app.pcss"
   },
   "scripts": {
-    "check": "exit 0;svelte-check --tsconfig ./tsconfig.json",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
     "build": "npm run check && rimraf dist && cpx 'src/lib/**/*' dist && cpx package.json dist",
     "release": "svelte-package && cp package.json dist/package.json && cd dist && npm publish"
   },

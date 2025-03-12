@@ -10,8 +10,8 @@ export default defineConfig({
   plugins: [svelte(), tailwindcss()],
   resolve: {
     alias: {
-      $lib: path.resolve(__dirname, "../src/lib"),
-      "@mateothegreat/svelte5-forms": path.resolve(__dirname, "../src/lib")
+      $lib: path.resolve(__dirname, "../src"),
+      "@mateothegreat/svelte5-forms": path.resolve(__dirname, "../src")
     }
   }
 });

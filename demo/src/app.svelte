@@ -1,18 +1,17 @@
 <script lang="ts">
-  import { createForm } from "$lib/form";
-  import * as Form from "$lib/index";
+  import { ControlType, createForm } from "@mateothegreat/svelte5-forms";
   import { CheckCircle2, Pause, Play, XCircle } from "lucide-svelte";
   import CustomForm from "./form/custom-form.svelte";
   import Badge from "./lib/components/badge.svelte";
   import { get, start, stop } from "./lib/simulation.svelte";
 
   const form = createForm({
-    name: "form-1"
+    name: "simulation"
   });
 
   form.add({
     name: "test-1",
-    type: Form.ControlType.INPUT,
+    type: ControlType.text,
     props: {
       protected: true
     }
@@ -20,7 +19,7 @@
 
   form.add({
     name: "test-2",
-    type: Form.ControlType.INPUT,
+    type: ControlType.text,
     props: { protected: true }
   });
 
@@ -83,29 +82,38 @@
 
 <div class="flex flex-col gap-5 text-[12px]">
   <div
-    class="flex items-center justify-between gap-2 border-b-2 bg-indigo-950/60 p-4 text-xs"
-    class:border-fuchsia-700={!get().running}
-    class:border-green-700={get().running}>
-    <div class="flex gap-2">@mateothegreat/svelte5-forms</div>
-    <div class="flex items-center gap-2">
-      {#if get().running}
-        <button
-          onclick={() => stop(form)}
-          class="fuchsia">
-          <Pause class="h-3 w-3" />
-        </button>
-      {:else}
-        <button
-          onclick={() => start(form)}
-          class="green">
-          <Play class="h-3 w-3" />
-        </button>
-      {/if}
-      <div class="flex items-center gap-2">
-        Simulation:
-        <Badge class="text-white {get().running ? 'bg-green-600' : 'bg-fuchsia-600'}">{get().running ? "running" : "stopped"}</Badge>
+    class="flex h-10 animate-pulse items-center gap-2 border-b-2 bg-indigo-950/60 p-2"
+    class:animate-pulse-running={get().running}
+    class:animate-pulse-stopped={!get().running}>
+    <div class="flex flex-1 text-sm text-slate-400/50">
+      @mateothegreat/
+      <span class="font-semibold text-green-500">svelte5-forms</span>
+    </div>
+    <div
+      class="flex animate-pulse items-center justify-center gap-2 rounded-b-xl border-2 bg-black px-4 py-2"
+      class:animate-pulse-running={get().running}
+      class:animate-pulse-stopped={!get().running}>
+      <div class="relative -top-[2px] flex items-center justify-center gap-2 rounded-b-xl bg-black pt-3">
+        <div class="flex items-center justify-center gap-1">
+          simulation is
+          <span class="font-semibold {get().running ? 'text-green-500' : 'text-fuchsia-600'}">{get().running ? "running" : "stopped"}</span>
+        </div>
+        {#if get().running}
+          <button
+            onclick={() => stop(form)}
+            class="fuchsia">
+            <Pause class="h-3 w-3" />
+          </button>
+        {:else}
+          <button
+            onclick={() => start(form)}
+            class="green">
+            <Play class="h-3 w-3" />
+          </button>
+        {/if}
       </div>
     </div>
+    <div class="flex flex-1 justify-end">sdf</div>
   </div>
   <div class="mx-4 flex h-[50vh] gap-3">
     <div class="scrollbar-dark flex flex-col gap-4 overflow-hidden overflow-y-auto rounded-[7px] border-2 border-indigo-700">
@@ -196,7 +204,6 @@
 <CustomForm />
 
 <style>
-  /* Custom scrollbar styling */
   .scrollbar-dark {
     scrollbar-width: thin;
     scrollbar-color: #1552a6 #1f2937;
@@ -220,5 +227,33 @@
 
   .scrollbar-dark::-webkit-scrollbar-thumb:hover {
     background-color: #1552a6;
+  }
+
+  @keyframes pulse-running {
+    0%,
+    100% {
+      border-color: rgb(55 55 57);
+    }
+    50% {
+      border-color: rgb(34, 197, 94); /* green-500 when running */
+    }
+  }
+
+  @keyframes pulse-stopped {
+    0%,
+    100% {
+      border-color: rgb(55 55 57);
+    }
+    50% {
+      border-color: rgb(217, 70, 239); /* fuchsia-500 when stopped */
+    }
+  }
+
+  .animate-pulse-running {
+    animation: pulse-running 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-pulse-stopped {
+    animation: pulse-stopped 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 </style>

@@ -27,5 +27,6 @@
     "statusBar.debuggingForeground": "#15202b",
     "titleBar.border": "#ff3d00"
   },
-  "peacock.color": "#ff3d00"
+  "peacock.color": "#ff3d00",
+  "colorWheel.settings.workspaceColor": "hsl(51,24%,40%)"
 }

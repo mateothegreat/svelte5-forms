@@ -1,4 +1,5 @@
-import { ControlType, type Control } from "$lib/control.svelte";
+import { ControlType, type Control } from "@mateothegreat/svelte5-forms";
+
 import ReusableInput from "./reusable-input.svelte";
 
 export type ControlProps = {

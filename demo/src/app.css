@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
 
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
@@ -9,7 +8,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-slate-400;
+    @apply bg-background text-slate-400 font-["Inter"];
   }
 
   h1 {

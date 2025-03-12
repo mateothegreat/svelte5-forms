@@ -1,19 +1,16 @@
 <script lang="ts">
-  import { between } from "$lib";
-  import { ControlType } from "$lib/control.svelte";
-  import { createForm } from "$lib/form";
+  import { ControlType, createForm, validators } from "@mateothegreat/svelte5-forms";
   import { random } from "../lib/helpers";
   import ReusableInput from "./reusable-input.svelte";
-  import { ControlMapping } from "./types";
 
   const form = createForm({
-    components: ControlMapping
+    name: "custom-form"
   });
 
   form.add({
     name: "test-1",
     type: ControlType.text,
-    validators: [between(2000, 5000)],
+    validators: [validators.between(2000, 5000)],
     props: {
       foo: "barring"
     }

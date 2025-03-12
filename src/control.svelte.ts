@@ -6,7 +6,7 @@ import type { ValidationResult, Validator } from "./validators/validator";
 
 export enum ControlType {
   text = "text",
-  options = "options",
+  collection = "collection",
   boolean = "boolean"
 }
 
@@ -111,25 +111,6 @@ export class Control<T = any> {
     this.errors = flatResults;
     this.valid = flatResults.every((v) => v.valid);
     return flatResults;
-  }
-
-  create() {
-    const cmp = ControlComponents[this.type];
-    // const div = document.createElement("div");
-    // const a = await import("./controls/input.svelte");
-    // console.log(a);
-    // const cmp = a.default(div, {
-    //   control: this,
-    //   form: null,
-    //   props: {
-    //     control: this,
-    //     form: null
-    //   }
-    // });
-    return cmp;
-    // return {
-    //   domNodes: [content]
-    // };
   }
 
   delete() {

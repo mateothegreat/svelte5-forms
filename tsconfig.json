@@ -15,12 +15,10 @@
     "noEmit": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
-    "allowArbitraryExtensions": true,
+    "allowArbitraryExtensions": true
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.svelte",
-    "src/**/*.svelte.ts",
-    "demo/src/form/reusable-input.svelte"
+    "./src/**/*.svelte.ts",
+    "./src/**/*.ts",
   ]
 }

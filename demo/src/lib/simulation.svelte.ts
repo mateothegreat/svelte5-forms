@@ -1,6 +1,5 @@
-import { between } from "$lib";
-import type { Control } from "$lib/control.svelte";
-import type { Form } from "$lib/form";
+import type { Control, Form } from "@mateothegreat/svelte5-forms";
+import { validators } from "@mateothegreat/svelte5-forms";
 
 import { getRandomControlType, random, randomBoolean, randomString } from "./helpers";
 
@@ -61,7 +60,7 @@ export const start = (
         name: randomString(10),
         type: getRandomControlType(),
         group: "group-1",
-        validators: [between(2000, 5000)]
+        validators: [validators.between(2000, 5000)]
       });
     }
   }
@@ -75,7 +74,7 @@ export const start = (
             name: randomString(10),
             type: getRandomControlType(),
             group: "group-1",
-            validators: [between(2000, 5000)]
+            validators: [validators.between(2000, 5000)]
           });
         }
       }, config.interval)

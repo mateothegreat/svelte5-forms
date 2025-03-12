@@ -55,7 +55,7 @@
     <!-- <Validation results={control.errors} /> -->
   </div>
   <div class="m-5 flex w-56 flex-col gap-4 rounded-[5px] border-1 border-indigo-700 bg-gray-900/80 p-2">
-    <Badge class="justify-start bg-blue-900 font-bold">control values</Badge>
+    <Badge class="justify-start bg-green-800 font-bold text-white">control values</Badge>
     <table class="mx-1">
       <tbody>
         <tr>
@@ -91,7 +91,7 @@
         </tr>
       </tbody>
     </table>
-    <Badge class="justify-start bg-slate-700 font-bold">...rest $props():</Badge>
+    <Badge class="justify-start bg-slate-600 font-bold">...rest $props():</Badge>
     <pre>{JSON.stringify(rest, null, 2)}</pre>
   </div>
 </div>
